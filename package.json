@@ -1,0 +1,27 @@
+{
+  "name": "githubactiontutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
+    "@octokit/action": "^3.0.0",
+    "ajax-request": "^1.2.3",
+    "atob": "^2.1.2",
+    "blob": "^0.1.0",
+    "btoa": "^1.2.1",
+    "form-data": "^3.0.0",
+    "https": "^1.0.0",
+    "jszip": "^3.5.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "sendmail": "^1.6.1"
+  }
+}

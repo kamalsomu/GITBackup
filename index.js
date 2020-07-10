@@ -1,0 +1,40 @@
+const core = require('@actions/core');
+const github = require('@actions/github');
+const { Octokit } = require("@octokit/action");
+const FormData = require('form-data');
+const btoa = require('btoa');
+const Blob = require('blob');
+const request = require('request');
+//var request = require('request-promise');
+
+var JSZip = require("jszip");
+
+// .github/actions/my-script.js
+const octokit = new Octokit();
+var zip = new JSZip();
+
+// `octokit` is now authenticated using GITHUB_TOKEN
+
+try {
+  // `who-to-greet` input defined in action metadata file
+  const nameToGreet = core.getInput('who-to-greet');
+  console.log(`Hello ${nameToGreet}!`);
+  const time = (new Date()).toTimeString();
+  core.setOutput("time", time);
+  // Get the JSON webhook payload for the event that triggered the workflow
+  const payloadJSON=github.context.payload;
+  const payload = JSON.stringify(github.context.payload, undefined, 2)
+  console.log(`The event payload: ${payload}`);
+
+  
+
+  const octokit = new Octokit();
+  const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
+  console.log('owner=='+owner);
+  console.log('repo=='+repo);
+
+  
+
+} catch (error) {
+  core.setFailed(error.message);
+}
