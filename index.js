@@ -91,7 +91,7 @@ try {
     var sha=response.data.object.sha;
 
   //var ref=response.ref;
-    createBranch(owner,repo,"refs/heads/kamalbranch1",sha,function(response){
+    createBranch(owner,repo,"heads/kamalbranch1",sha,function(response){
       console.log('success');
     });
 
