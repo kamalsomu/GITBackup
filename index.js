@@ -20,10 +20,16 @@ var zip = new JSZip();
 async function createBranch(owner,repo,branch,sha,successCallback) {
 
     
-  octokit.request("POST /repos/:owner/:repo/git/refs?ref="+branch+"&sha="+sha, {
+  /*octokit.request("POST /repos/:owner/:repo/git/refs?ref="+branch+"&sha="+sha, {
     "owner":owner,
     "repo":repo
-  }).then((response) => {
+  })*/
+  await octokit().git.createRef({
+   owner,
+  repo,
+  sha: sha,
+  ref: branch
+   }).then((response) => {
 
     console.log('createBranch response');
     console.log(response);
@@ -85,7 +91,6 @@ try {
 
   console.log('currentPayloadRef=='+currentPayloadRef);
 
-  
   
   getBranchDetails(owner,repo,currentPayloadRef,function(response){
     var sha=response.data.object.sha;
