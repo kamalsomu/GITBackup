@@ -21,8 +21,8 @@ async function createBranch(owner,repo,branch,sha,successCallback) {
 
     
   octokit.request("POST /repos/:owner/:repo/git/refs?ref="+branch+"&sha="+sha, {
-    owner,
-    repo
+    "owner":owner,
+    "repo":repo
   }).then((response) => {
 
     console.log('createBranch response');
@@ -40,9 +40,12 @@ async function createBranch(owner,repo,branch,sha,successCallback) {
 //@param branch = heads/kamalsomu/featureA
 async function getBranchDetails(owner,repo,branch,successCallback) {
 
+console.log('owner is==');
+console.log(owner);
+
   await octokit.request("GET /repos/octocat/Hello-World/git/ref/"+branch, {
-    owner,
-    repo
+    "owner":owner,
+    "repo":repo
   }).then((response) => {
 
 console.log('getBranchDetails response');
@@ -78,7 +81,7 @@ try {
   console.log('owner=='+owner);
   console.log('repo=='+repo);
 
-  const currentPayloadRef=payload.ref;
+  const currentPayloadRef=payloadJSON.ref;
 
   console.log('currentPayloadRef=='+currentPayloadRef);
 
