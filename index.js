@@ -101,7 +101,10 @@ try {
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
   var branchNameToCreate="BU-"+date;
-  
+  console.log("branchNameToCreate");
+  console.log(branchNameToCreate);
+
+
     createBranch(owner,repo,"refs/heads/"+branchNameToCreate,sha,function(response){
       console.log('success');
     });
