@@ -15,6 +15,61 @@ var zip = new JSZip();
 
 // `octokit` is now authenticated using GITHUB_TOKEN
 
+
+
+
+var sha=response.object.sha
+
+var ref=response.ref;
+
+octokit.request("POST /repos/:owner/:repo/git/refs?ref="+ref+"&sha="+sha, {
+  owner,
+  repo
+});
+
+//@param branch = heads/kamalsomu/featureB
+async function createBranch(branch,sha,successCallback) {
+
+    
+  octokit.request("POST /repos/:owner/:repo/git/refs?ref="+branch+"&sha="+sha, {
+    owner,
+    repo
+  }).then((response) => {
+
+    console.log('createBranch response');
+    console.log(response);
+    successCallback(response);
+
+  }).catch((err) => {
+    console.log('createBranch error '+err);
+    console.log('createBranch error json'+JSON.stringify(err));
+ 
+  });
+ 
+}
+
+//@param branch = heads/kamalsomu/featureA
+async function getBranchDetails(branch,successCallback) {
+
+  await octokit.request("GET /repos/octocat/Hello-World/git/ref/"+branch, {
+    owner,
+    repo
+  }).then((response) => {
+
+console.log('getBranchDetails response');
+console.log(response);
+successCallback(response);
+
+   
+
+}).catch((err) => {
+   console.log('getBranchDetails error '+err);
+   console.log('getBranchDetails error json'+JSON.stringify(err));
+
+ });
+
+}
+
 try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
@@ -26,6 +81,7 @@ try {
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
 
+
   
 
   const octokit = new Octokit();
@@ -33,7 +89,25 @@ try {
   console.log('owner=='+owner);
   console.log('repo=='+repo);
 
+  const currentPayloadRef=payload.ref;
+
+  console.log('currentPayloadRef=='+currentPayloadRef);
+
   
+  
+  getBranchDetails(currentPayloadRef,function(response){
+    var sha=response.object.sha;
+
+  //var ref=response.ref;
+    createBranch("refs/heads/kamalbranch1",sha,function(response){
+      console.log('success');
+    });
+
+  });
+
+
+
+
 
 } catch (error) {
   core.setFailed(error.message);
