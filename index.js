@@ -43,7 +43,7 @@ async function getBranchDetails(owner,repo,branch,successCallback) {
 console.log('owner is==');
 console.log(owner);
 
-  await octokit.request("GET /repos/octocat/Hello-World/git/ref/"+branch, {
+  await octokit.request("GET /repos/:owner/:repo/git/ref/"+branch, {
     "owner":owner,
     "repo":repo
   }).then((response) => {
