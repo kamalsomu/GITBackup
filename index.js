@@ -16,17 +16,6 @@ var zip = new JSZip();
 // `octokit` is now authenticated using GITHUB_TOKEN
 
 
-
-
-var sha=response.object.sha
-
-var ref=response.ref;
-
-octokit.request("POST /repos/:owner/:repo/git/refs?ref="+ref+"&sha="+sha, {
-  owner,
-  repo
-});
-
 //@param branch = heads/kamalsomu/featureB
 async function createBranch(branch,sha,successCallback) {
 
