@@ -96,7 +96,13 @@ try {
     var sha=response.data.object.sha;
 
   //var ref=response.ref;
-    createBranch(owner,repo,"refs/heads/kamalbranch1",sha,function(response){
+  var today = new Date();
+
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+  var branchNameToCreate="BU-"+date;
+  
+    createBranch(owner,repo,"refs/heads/"+branchNameToCreate,sha,function(response){
       console.log('success');
     });
 
