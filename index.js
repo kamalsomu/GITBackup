@@ -17,7 +17,7 @@ var zip = new JSZip();
 
 
 //@param branch = heads/kamalsomu/featureB
-async function createBranch(branch,sha,successCallback) {
+async function createBranch(owner,repo,branch,sha,successCallback) {
 
     
   octokit.request("POST /repos/:owner/:repo/git/refs?ref="+branch+"&sha="+sha, {
@@ -38,7 +38,7 @@ async function createBranch(branch,sha,successCallback) {
 }
 
 //@param branch = heads/kamalsomu/featureA
-async function getBranchDetails(branch,successCallback) {
+async function getBranchDetails(owner,repo,branch,successCallback) {
 
   await octokit.request("GET /repos/octocat/Hello-World/git/ref/"+branch, {
     owner,
@@ -84,11 +84,11 @@ try {
 
   
   
-  getBranchDetails(currentPayloadRef,function(response){
+  getBranchDetails(owner,repo,currentPayloadRef,function(response){
     var sha=response.object.sha;
 
   //var ref=response.ref;
-    createBranch("refs/heads/kamalbranch1",sha,function(response){
+    createBranch(owner,repo,"refs/heads/kamalbranch1",sha,function(response){
       console.log('success');
     });
 
