@@ -24,7 +24,7 @@ async function createBranch(owner,repo,branch,sha,successCallback) {
     "owner":owner,
     "repo":repo
   })*/
-  await octokit().git.createRef({
+  await octokit.git.createRef({
    owner,
   repo,
   sha: sha,
