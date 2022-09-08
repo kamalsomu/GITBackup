@@ -19,7 +19,7 @@
     "btoa": "^1.2.1",
     "form-data": "^3.0.0",
     "https": "^1.0.0",
-    "jszip": "^3.5.0",
+    "jszip": "^3.7.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "sendmail": "^1.6.1"
